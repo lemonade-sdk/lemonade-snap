@@ -1,0 +1,82 @@
+name: lemonade
+summary: Lemonade
+description: |
+  Lemonade - Refreshingly fast LLMs on GPUs and NPUs 
+
+adopt-info: lemonade
+grade: stable
+confinement: strict
+base: core24
+contact: https://github.com/kenvandine/lemonade-snap/issues
+issues: https://github.com/kenvandine/lemonade-snap/issues
+website: https://github.com/kenvandine/lemonade-snap
+license: Apache-2.0
+compression: lzo
+
+platforms:
+  amd64:
+
+parts:
+  lemonade:
+    plugin: nil
+    source: https://github.com/lemonade-sdk/lemonade.git
+    source-subdir: src/app
+    build-packages:
+      - npm
+      - git
+    override-pull: |
+      craftctl default
+      VERSION=$(craftctl get version)
+      if [ -z $VERSION ]; then
+        VERSION=$(git describe --tags --abbrev=10)
+        craftctl set version=$VERSION
+      fi
+    override-build: |
+      cd $CRAFT_PART_BUILD/src/app
+      npm install
+      npm run build
+      cp -rp dist-app $CRAFT_PART_INSTALL/ 
+      cp -rp assets $CRAFT_PART_INSTALL/
+    prime:
+      - assets
+      - dist-app
+      - -*/chrome-sandbox
+      - -*/resources/app.asar.unpacked/node_modules/sharp/vendor/lib
+      - -*/resources/app.asar.unpacked/node_modules/sharp/vendor/include
+
+  launcher:
+    plugin: dump
+    source: launcher
+    override-build: |
+      cp launcher $CRAFT_PART_INSTALL/
+
+  cleanup:
+    after: [ lemonade ]
+    plugin: nil
+    build-snaps: [ gnome-46-2404 ]
+    override-prime: |
+        set -eux
+        cd /snap/gnome-46-2404/current
+        find . -type f,l -exec rm -f $SNAPCRAFT_PRIME/{} \;
+
+plugs:
+  shmem:
+    interface: shared-memory
+    private: true
+
+apps:
+  lemonade:
+    extensions: [gnome]
+    command: launcher
+    plugs:
+      - audio-playback
+      - audio-record
+      - home
+      - network
+      - shmem
+      - browser-support
+    environment:
+      GTK_USE_PORTAL: 1
+      TMPDIR: $XDG_RUNTIME_DIR
+      HOME: $SNAP_USER_COMMON
+      AMDGPU_ASIC_ID_TABLE_PATH: $SNAP/gpu-2404/libdrm/amdgpu.ids
