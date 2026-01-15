@@ -1,7 +1,34 @@
 name: lemonade
-summary: Lemonade
+summary: Desktop client for local AI chat powered by lemonade-server
 description: |
-  Lemonade - Refreshingly fast LLMs on GPUs and NPUs 
+  Lemonade is a desktop chat interface for interacting with large language
+  models (LLMs) running locally on your machine. It provides a clean,
+  user-friendly interface for AI conversations with support for GPU and NPU
+  acceleration.
+
+  **Requirements**
+
+  This snap requires the lemonade-server snap to be installed and running.
+  The server provides the AI backend that powers this desktop client.
+
+  To install lemonade-server:
+
+    sudo snap install lemonade-server
+
+  The server starts automatically after installation. You can verify it is
+  running with:
+
+    snap services lemonade-server
+
+  The desktop client connects to lemonade-server on localhost port 8000.
+  Ensure the server is running before launching the desktop client.
+
+  **Features**
+
+  - Modern chat interface for AI conversations
+  - Hardware-accelerated inference on GPUs and NPUs
+  - Runs entirely on your local machine for privacy
+  - Native Wayland and X11 support
 
 adopt-info: lemonade
 grade: stable

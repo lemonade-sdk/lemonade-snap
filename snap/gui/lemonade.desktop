@@ -1,9 +1,9 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Lemonade
-Comment=Refreshingly fast LLMs on GPUs and NPUs 
+Comment=Desktop client for local AI chat (requires lemonade-server)
 Type=Application
 Exec=lemonade
 Icon=${SNAP}/assets/logo.svg
-Categories=Tools;
-Keywords=AI;Copilot;GPT;ChatGPT;Gemini;
+Categories=Utility;Chat;
+Keywords=AI;LLM;Chat;Assistant;Copilot;GPT;ChatGPT;Gemini;Local;
