@@ -57,4 +57,4 @@ sudo snap install lemonade_*.snap --dangerous
 
 ## License
 
-Apache-2.0
+The Lemonade SDK project is licensed under the Apache-2.0 and the snap packaging is licensed GPL-3
