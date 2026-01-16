@@ -59,6 +59,14 @@ parts:
         craftctl set version=$VERSION
       fi
     override-build: |
+      # workaround for build.snapcraft.io builds
+      # https://bugs.launchpad.net/bugs/1886861
+      if [ -n "$http_proxy" ]; then
+        export ELECTRON_GET_USE_PROXY=1
+        export GLOBAL_AGENT_HTTP_PROXY="${http_proxy}"
+        export GLOBAL_AGENT_HTTPS_PROXY="${http_proxy}"
+      fi
+
       cd $CRAFT_PART_BUILD/src/app
       npm install
       npm run build
