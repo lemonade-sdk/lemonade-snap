@@ -71,11 +71,18 @@ parts:
       - -*/resources/app.asar.unpacked/node_modules/sharp/vendor/lib
       - -*/resources/app.asar.unpacked/node_modules/sharp/vendor/include
 
-  launcher:
+  scripts:
     plugin: dump
-    source: launcher
+    source: scripts
     override-build: |
-      cp launcher $CRAFT_PART_INSTALL/
+      mkdir -p $CRAFT_PART_INSTALL/bin/
+      cp launcher $CRAFT_PART_INSTALL/bin/
+      cp lemonade-server $CRAFT_PART_INSTALL/bin/
+
+  deps:
+    plugin: nil
+    stage-packages:
+      - curl
 
   cleanup:
     after: [ lemonade ]
@@ -94,7 +101,7 @@ plugs:
 apps:
   lemonade:
     extensions: [gnome]
-    command: launcher
+    command: bin/launcher
     plugs:
       - audio-playback
       - audio-record
