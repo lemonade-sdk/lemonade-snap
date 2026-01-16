@@ -60,6 +60,7 @@ parts:
         craftctl set version=$VERSION
       fi
     override-build: |
+      set +u # For unbound variables
       # workaround for build.snapcraft.io builds
       # https://bugs.launchpad.net/bugs/1886861
       if [ -n "$http_proxy" ]; then
