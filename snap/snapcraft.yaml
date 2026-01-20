@@ -44,6 +44,15 @@ compression: lzo
 platforms:
   amd64:
 
+slots:
+  # Adds a pseudo content interface to allow clients to express their
+  # runtime dependency on lemonade-server
+  install-lemonade-runtime-dependency:
+    interface: content
+    content: foo
+    read:
+      - $SNAP/meta/snap.yaml
+
 parts:
   lemonade:
     plugin: nil
