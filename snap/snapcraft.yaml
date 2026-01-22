@@ -30,7 +30,7 @@ description: |
   - Runs entirely on your local machine for privacy
   - Native Wayland and X11 support
 
-version: 9.1.3
+version: 9.1.4
 adopt-info: lemonade
 grade: stable
 confinement: strict
