@@ -4,6 +4,13 @@ if [[ ! -n "$DISABLE_WAYLAND" && -n "$WAYLAND_DISPLAY" ]]; then
   WAYLAND_OPTS="--enable-features=UseOzonePlatform --ozone-platform-hint=auto --enable-wayland-ime"
 fi
 
+# Read server URL from snap settings
+URL=$(snapctl get server-url)
+URL=${URL:-http://127.0.0.1:8000}
+
+# Set base URL for the app
+export LEMONADE_APP_BASE_URL="$URL"
+
 exec $SNAP/dist-app/linux-unpacked/lemonade \
 	--disable-dev-shm-usage \
 	$WAYLAND_OPTS \
