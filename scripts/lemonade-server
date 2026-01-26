@@ -2,15 +2,16 @@
 
 # lemonade-server - Check status of lemonade server
 
-DEFAULT_PORT=8000
-HOST="localhost"
+# Read server URL from snap settings
+URL=$(snapctl get server-url)
+URL=${URL:-http://127.0.0.1:8000}
 
 status() {
     # Try to get status from the server
-    response=$(curl -s --connect-timeout 2 "http://${HOST}:${DEFAULT_PORT}/health" 2>/dev/null)
+    response=$(curl -s --connect-timeout 2 "${URL}/health" 2>/dev/null)
 
     if [ $? -eq 0 ] && [ -n "$response" ]; then
-        echo "Server is running on port ${DEFAULT_PORT}"
+        echo "Server is running at ${URL}"
         exit 0
     else
         echo "Server is not running"

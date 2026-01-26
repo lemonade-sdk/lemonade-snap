@@ -20,7 +20,7 @@ The server starts automatically after installation. Verify it is running with:
 snap services lemonade-server
 ```
 
-The desktop client connects to lemonade-server on **localhost port 8000**.
+The desktop client connects to lemonade-server on **localhost port 8000** by default. See [Configuration](#configuration) to connect to a remote server.
 
 ## Installation
 
@@ -34,6 +34,22 @@ sudo snap install lemonade
 - Hardware-accelerated inference on GPUs and NPUs
 - Runs entirely on your local machine for privacy
 - Native Wayland and X11 support
+
+## Configuration
+
+By default, the client connects to lemonade-server at `http://127.0.0.1:8000`. You can configure the server URL:
+
+```bash
+sudo snap set lemonade server-url=http://192.168.1.100:8000
+```
+
+Changes take effect on the next app launch.
+
+To reset to default:
+
+```bash
+sudo snap set lemonade server-url=http://127.0.0.1:8000
+```
 
 ## Building from Source
 
