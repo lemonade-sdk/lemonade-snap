@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+# Configuration changes will take effect on next app launch

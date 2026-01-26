@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+snapctl set server-url=http://127.0.0.1:8000
