@@ -1,7 +1,6 @@
 name: Snap Build
 
 on:
-  push:
   pull_request:
     types: [opened, reopened]    
   workflow_dispatch:
