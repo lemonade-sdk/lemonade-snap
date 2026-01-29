@@ -5,7 +5,7 @@ on:
   workflow_dispatch:   
 
 jobs:
-  stable:
+  build-stable:
     runs-on: ubuntu-24.04
     if: github.ref == 'refs/heads/stable' # Run only for the 'stable' branch
     steps:
