@@ -76,6 +76,7 @@ parts:
       cp -rp dist-app $CRAFT_PART_INSTALL/ 
       cp -rp assets $CRAFT_PART_INSTALL/
     prime:
+      - -assets/favicon.ico
       - assets
       - dist-app
       - -*/chrome-sandbox
