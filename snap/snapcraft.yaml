@@ -49,8 +49,9 @@ parts:
     source: https://github.com/lemonade-sdk/lemonade.git
     source-type: git
     source-subdir: src/app
+    build-snaps:
+      - node/22/stable
     build-packages:
-      - npm
       - git
     override-pull: |
       craftctl default
