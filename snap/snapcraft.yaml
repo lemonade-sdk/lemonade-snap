@@ -50,8 +50,9 @@ parts:
     source-type: git
     source-tag: v9.4.1
     source-subdir: src/app
+    build-snaps:
+      - node/22/stable
     build-packages:
-      - npm
       - git
     override-pull: |
       craftctl default
