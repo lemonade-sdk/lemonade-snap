@@ -70,6 +70,14 @@ parts:
         export GLOBAL_AGENT_HTTPS_PROXY="${http_proxy}"
       fi
 
+      export PATH="/snap/node/current/bin:$PATH"
+      export npm_config_loglevel="error"
+      export npm_config_progress="false"
+      export npm_config_fund="false"
+      export npm_config_audit="false"
+      export npm_config_update_notifier="false"
+      export NO_UPDATE_NOTIFIER="1"
+
       cd $CRAFT_PART_BUILD/src/app
       npm install
       npm run build
