@@ -51,7 +51,7 @@ parts:
     plugin: nil
     source: https://github.com/lemonade-sdk/lemonade.git
     source-type: git
-    source-tag: v11.9.0
+    source-tag: v2026.39.1
     source-subdir: src/app
     build-snaps:
       - node/22/stable
